@@ -66,6 +66,10 @@ public class AlgoritmoFloyd {
                             caminitos += "De " + ciudad.get(i) + " ---> " + ciudad.get(j) + " debe irse por: " + ciudad.get(i) + ", " + ciudad.get(j) + "\n";
                         }else if(!caminos[i][j].equals("") && (j == restriccion2) && (i == restriccion1)){
                             String demas = caminos[i][j];
+                            //System.out.println("Todo: " + demas + " y " + ciudad.get(Integer.parseInt(demas) - 1));
+                            if(!demas.contains(",")){
+                                camino.add(Integer.parseInt(demas));
+                            }
                             while(demas.contains(",")){
                                 String walk = demas.substring(0, demas.indexOf(","));
                                 demas = demas.substring(demas.indexOf(",") + 2);
