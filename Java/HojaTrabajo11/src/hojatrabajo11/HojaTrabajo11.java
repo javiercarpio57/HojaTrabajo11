@@ -60,13 +60,14 @@ public class HojaTrabajo11 {
         
         AlgoritmoFloyd af = new AlgoritmoFloyd();
         long matriz[][];
-        //System.out.println(af.algoritmoFloyd(matriz, ciudades, ciudad));
+        
         OUTER:
         while (true) {
             System.out.println("1. Mostrar ruta mas corta entre ciudades.");
             System.out.println("2. Indicar ciudad que esta en el centro del grafo.");
             System.out.println("3. Modificar grafo.");
-            System.out.println("4. Salir");
+            System.out.println("4. Mostrar matriz de adyacencia.");
+            System.out.println("5. Salir");
             seleccion = sc.nextInt();
             
             switch (seleccion) {
@@ -82,20 +83,16 @@ public class HojaTrabajo11 {
                     matriz = af.crearMatriz(ciudades, ciudad);
                     
                     if(af.verificarExistencia(o, d, ciudades)){
-                        System.out.println(af.algoritmoFloyd(matriz, ciudades, o, d));
                         
+                        System.out.println(af.algoritmoFloyd(matriz, ciudades, o, d));
                     }else{
                         System.out.println("Dichas ciudades no estan contenidas en GuateGrafo.");
                     }
-                    
-                    
                     break;
                 case 2:
                     ciudades.clear();
                     ciudades = city.crearLista(ciudad);
                     matriz = af.crearMatriz(ciudades, ciudad);
-                    System.out.println(af.verMatriz(matriz));
-                    System.out.println("\n----");
                     af.centerGraph(matriz);
                     
                     System.out.println("La ciudad central es: " + ciudades.get(af.centerGraph(matriz)));
@@ -139,6 +136,13 @@ public class HojaTrabajo11 {
                     
                     break;
                 case 4:
+                    ciudades.clear();
+                    ciudades = city.crearLista(ciudad);
+                    matriz = af.crearMatriz(ciudades, ciudad);
+                    System.out.println("La matriz de adyacencia es:");
+                    System.out.println(af.verMatriz(matriz));
+                    break;
+                case 5:
                     break OUTER;
                 default:
                     break;

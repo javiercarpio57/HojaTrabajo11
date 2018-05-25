@@ -66,11 +66,9 @@ public class AlgoritmoFloyd {
                             caminitos += "De " + ciudad.get(i) + " ---> " + ciudad.get(j) + " debe irse por: " + ciudad.get(i) + ", " + ciudad.get(j) + "\n";
                         }else if(!caminos[i][j].equals("") && (j == restriccion2) && (i == restriccion1)){
                             String demas = caminos[i][j];
-                            //System.out.println("Hay:" + demas);
                             while(demas.contains(",")){
                                 String walk = demas.substring(0, demas.indexOf(","));
                                 demas = demas.substring(demas.indexOf(",") + 2);
-                                //System.out.println(walk);
                                 camino.add(Integer.parseInt(walk));
                                 if(!demas.contains(",")){
                                     camino.add(Integer.parseInt(demas));
@@ -79,10 +77,8 @@ public class AlgoritmoFloyd {
                             
                             String c = "";
                             for(Integer in: camino){
-                                System.out.println("Se guardo: " + in);
                                 c += ciudad.get(in - 1) + ", ";
                             }
-                            System.out.println(c);
                             caminitos += "De " + ciudad.get(i) + " ---> " + ciudad.get(j) + " debe irse por: " + ciudad.get(i) + ", " + c + ciudad.get(j) + "\n";
                         }
                     }
@@ -146,7 +142,12 @@ public class AlgoritmoFloyd {
         String cadena = "";
         for(int x = 0; x < fila; x++){
             for(int y = 0; y < fila; y++){
-                cadena += matriz[x][y] + "\t";
+                if(matriz[x][y]==999999999){
+                    cadena += -1 + "\t";
+                }else{
+                    cadena += matriz[x][y] + "\t";
+                }
+                
             }
             cadena += "\n";
         }
@@ -179,9 +180,6 @@ public class AlgoritmoFloyd {
             cont++;
         }
         
-        for(Long l: maximo){
-            System.out.println(l + "\t");
-        }
         
         max = 0;
         cont = 0;
