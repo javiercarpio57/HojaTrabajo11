@@ -1,17 +1,11 @@
-package hojatrabajo11;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author javie
- */
 public class HojaTrabajo11 {
     
     public static void main(String[] args) throws IOException {
@@ -140,6 +134,10 @@ public class HojaTrabajo11 {
                     ciudades = city.crearLista(ciudad);
                     matriz = af.crearMatriz(ciudades, ciudad);
                     System.out.println("La matriz de adyacencia es:");
+                    for(String s: ciudades){
+                        System.out.print(s + " ");
+                    }
+                    System.out.println("");
                     System.out.println(af.verMatriz(matriz));
                     break;
                 case 5:

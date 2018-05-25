@@ -1,12 +1,12 @@
 
-package hojatrabajo11;
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-/**
- *
- * @author javie
- */
 public class AlgoritmoFloyd {
 
     public AlgoritmoFloyd() {
@@ -77,6 +77,7 @@ public class AlgoritmoFloyd {
                             
                             String c = "";
                             for(Integer in: camino){
+                                
                                 c += ciudad.get(in - 1) + ", ";
                             }
                             caminitos += "De " + ciudad.get(i) + " ---> " + ciudad.get(j) + " debe irse por: " + ciudad.get(i) + ", " + c + ciudad.get(j) + "\n";
@@ -126,11 +127,7 @@ public class AlgoritmoFloyd {
         
         boolean existencia;
         
-        if(ciudad.contains(origen) && ciudad.contains(destino)){
-            existencia = true;
-        }else{
-            existencia = false;
-        }
+        existencia = ciudad.contains(origen) && ciudad.contains(destino);
         
         return existencia;
     }
@@ -140,8 +137,12 @@ public class AlgoritmoFloyd {
         int fila = matriz.length;
         
         String cadena = "";
+        
         for(int x = 0; x < fila; x++){
             for(int y = 0; y < fila; y++){
+//                if(y == 0){
+//                    cadena += cities.get(x) + "\t\t\t";
+//                }
                 if(matriz[x][y]==999999999){
                     cadena += -1 + "\t";
                 }else{
@@ -209,5 +210,41 @@ public class AlgoritmoFloyd {
         }
         
         return resultado;
+    }
+    
+    public ArrayList<Ciudades> crearListado() throws FileNotFoundException, IOException{
+        ArrayList<Ciudades> ciudad = new ArrayList<>();
+        File archivo = new File ("guategrafo.txt");
+        FileReader fr = new FileReader(archivo);
+        BufferedReader br1 = new BufferedReader(fr);
+        String linea = "";
+        Scanner scanner = new Scanner(fr);
+        
+        String ciudad1;
+        String ciudad2;
+        int distancia;
+        int cont = 0;
+        
+        while (scanner.hasNextLine()) {
+            linea = scanner.nextLine();
+            
+            ciudad1 = linea.substring(0, linea.indexOf(" "));
+            linea = linea.substring(linea.indexOf(" ") + 1, linea.length());
+            
+            ciudad2 = linea.substring(0, linea.indexOf(" "));
+            linea = linea.substring(linea.indexOf(" ") + 1, linea.length());
+            
+            distancia = Integer.parseInt(linea.substring(0, linea.length()));
+            
+            //System.out.println(ciudad1 + "-" + ciudad2 + "-" + distancia);
+            cont++;
+            
+            ciudad.add(new Ciudades(ciudad1, ciudad2, distancia));
+            
+            fr.close();
+            br1.close();
+        }
+        
+        return ciudad;
     }
 }

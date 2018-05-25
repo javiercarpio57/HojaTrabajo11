@@ -1,12 +1,6 @@
 
-package hojatrabajo11;
-
 import java.util.ArrayList;
 
-/**
- *
- * @author javie
- */
 public class Ciudades {
     
     private String origen;
